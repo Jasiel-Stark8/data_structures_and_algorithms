@@ -101,6 +101,31 @@ class LinkedList:
 
 
 
+    def insert_after_value(self, data_after, data_to_insert):
+        # Search for first occurance of data_after value in linked list
+        # Now insert data_to_insert after data_after node
+        if self.head is None:
+            return
+
+        if self.head.data == data_after:
+            self.head.data = Node(data_to_insert, data_after)
+
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                itr.next = Node(data_to_insert, itr.next)
+                break
+
+            itr = itr.next
+
+    def remove_by_value(self, data):
+        # Remove first node that contains data
+        if self.head is not None:
+            itr = self.next.next
+            if itr is not None:
+                self.remove_at(data)
+
+
 
 if __name__ == '__main__':
     try:
@@ -113,6 +138,21 @@ if __name__ == '__main__':
         ll.insert_at(0, 'kiwi')
         ll.print()
         ll.insert_at(2, 'apple')
+        ll.print()
+
+        ll = LinkedList()
+        ll.insert_values(["banana","mango","grapes","orange"])
+        ll.print()
+        ll.insert_after_value("mango","apple") # insert apple after mango
+        ll.print()
+        ll.remove_by_value("orange") # remove orange from linked list
+        ll.print()
+        ll.remove_by_value("figs")
+        ll.print()
+        ll.remove_by_value("banana")
+        ll.remove_by_value("mango")
+        ll.remove_by_value("apple")
+        ll.remove_by_value("grapes")
         ll.print()
     except KeyboardInterrupt:
         exit()
