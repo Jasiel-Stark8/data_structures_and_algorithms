@@ -102,6 +102,7 @@ class LinkedList:
 
 
     def insert_after_value(self, data_after, data_to_insert):
+        """Insert data after a certain value"""
         # Search for first occurance of data_after value in linked list
         # Now insert data_to_insert after data_after node
         if self.head is None:
@@ -119,11 +120,21 @@ class LinkedList:
             itr = itr.next
 
     def remove_by_value(self, data):
+        """Remove element by value name form list"""
         # Remove first node that contains data
-        if self.head is not None:
-            itr = self.next.next
-            if itr is not None:
-                self.remove_at(data)
+        if self.head is None:
+            return
+
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+
+        itr = self.head
+        while itr.next:
+            if itr.next.data == data:
+                itr.next == itr.next.next
+                break
+            itr = itr.next
 
 
 
